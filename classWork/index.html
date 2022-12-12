@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson 11</title>
+</head>
+<body>
+    
+    <script>
+        function Post(name, des){
+            fetch("https://northwind.vercel.app/api/categories",{
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                // mode: 'no-cors',
+                body: JSON.stringify({
+                    name: name,
+                    description : des
+                })
+            }).then(res => res.text())
+            .then(r => console.log(r))
+            .catch(err => console.log(err))
+
+        }
+
+        //  Get all posts
+        function getPosts(){
+            let API = "https://jsonplaceholder.typicode.com/posts";
+            fetch(API)
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(res => console.error("err", res));
+        }
+        // get data by id 
+        function getPostsById(id){
+            let API = `https://jsonplaceholder.typicode.com/posts/${ Number(id)}`;
+            fetch(API)
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(res => console.error("err", res));
+        }
+
+        // get commets by gost id
+        function getPostsComment(id){
+            let API = `https://jsonplaceholder.typicode.com/posts/${ Number(id)}/comments`;
+            fetch(API)
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(res => console.error("err", res));
+        }
+
+        // get commets by gost id
+        function getCommentByPostId(id){
+            let API = `https://jsonplaceholder.typicode.com/comments?postId=${ Number(id)}`;
+            fetch(API)
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(res => console.error("err", res));
+        }
+
+    </script>
+</body>
+</html>
